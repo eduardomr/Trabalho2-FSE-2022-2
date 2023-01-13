@@ -1,5 +1,7 @@
 import serial
-import time 
+import time
+import struct
+import crc
 
 ser = serial.Serial(
     port='/dev/serial0',
@@ -9,13 +11,20 @@ ser = serial.Serial(
     bytesize=serial.EIGHTBITS,
 )
 
-# Enviando dados
+# MODBUS
+endereco_rasp = 0x01
+
+
+
+
 
 comando = input("Selecione o comando")
 
 if comando == '1':
-    ser.write(b"0xA19231")
-    time.sleep(0.1)
-while 1:
-    x=ser.readline()
-    print(x)
+    código_função = 0xA1
+    comando_enviado = struct.pack(">BBH", endereco_rasp, código_função, crc.calcula_crc(código_função,len(código_função)))
+    ser.write(comando_enviado)
+if comando == '2':
+    código_função = 0xA2
+    comando_enviado = struct.pack(">BBH", endereco_rasp, código_função, crc.calcula_crc(código_função,len(código_função)))
+    ser.write(comando_enviado)
