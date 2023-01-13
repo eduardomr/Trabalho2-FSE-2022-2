@@ -22,9 +22,9 @@ comando = input("Selecione o comando")
 
 if comando == '1':
     código_função = 0xA1
-    comando_enviado = struct.pack(">BBH", endereco_rasp, código_função, crc.calcula_crc(código_função,len(código_função)))
+    comando_enviado = struct.pack(">BBH", endereco_rasp, código_função, crc.calcula_crc(código_função,1))
     ser.write(comando_enviado)
 if comando == '2':
     código_função = 0xA2
-    comando_enviado = struct.pack(">BBH", endereco_rasp, código_função, crc.calcula_crc(código_função,len(código_função)))
+    comando_enviado = struct.pack(">BBH", endereco_rasp, código_função, crc.calcula_crc(código_função,1))
     ser.write(comando_enviado)
