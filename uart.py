@@ -28,7 +28,7 @@ if comando == '1':
     ser.write(mensagem_crc)
 if comando == '2':
     codigo_funcao = 0x16
-    subcódigo = [0xD3, 9 , 2 , 3, 1, 0]
+    subcodigo = [0xD3, 9 , 2 , 3, 1, 0]
     mensagem = struct.pack(">BBn", endereco_rasp, codigo_funcao, subcodigo)
     crc_calculado = crc.calcula_crc(mensagem,len(mensagem))
     mensagem_crc = struct.pack(">BBnH", endereco_rasp, codigo_funcao, crc_calculado)
