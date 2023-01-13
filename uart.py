@@ -16,19 +16,20 @@ endereco_rasp = 0x01
 
 
 
-
-
+comando=0
 comando = input("Selecione o comando")
 
 if comando == '1':
-    codigo_funcao = 0xA1
-    mensagem = struct.pack(">BB", endereco_rasp, codigo_funcao)
+    codigo_funcao = 0x16
+    subcodigo = [0xD3, 9 , 2 , 3, 1, 1]
+    mensagem = struct.pack(">BBn", endereco_rasp, codigo_funcao, subcodigo )
     crc_calculado = crc.calcula_crc(mensagem,len(mensagem))
-    mensagem_crc = struct.pack(">BBH", endereco_rasp, codigo_funcao, crc_calculado)
+    mensagem_crc = struct.pack(">BBnH", endereco_rasp, codigo_funcao,subcodigo, crc_calculado)
     ser.write(mensagem_crc)
 if comando == '2':
-    codigo_funcao = 0xA2
-    mensagem = struct.pack(">BB", endereco_rasp, codigo_funcao)
+    codigo_funcao = 0x16
+    subcódigo = [0xD3, 9 , 2 , 3, 1, 0]
+    mensagem = struct.pack(">BBn", endereco_rasp, codigo_funcao, subcodigo)
     crc_calculado = crc.calcula_crc(mensagem,len(mensagem))
-    mensagem_crc = struct.pack(">BBH", endereco_rasp, codigo_funcao, crc_calculado)
+    mensagem_crc = struct.pack(">BBnH", endereco_rasp, codigo_funcao, crc_calculado)
     ser.write(mensagem_crc)
