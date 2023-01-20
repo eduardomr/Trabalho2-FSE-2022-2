@@ -18,4 +18,6 @@ class PID:
 # TESTE
 
 pid = PID()
-pid.atualizar_pid(0, 45)
+while True:
+    entrada = float(input("Digite a temperatura: "))
+    pid.atualizar_pid(25.0, entrada)
