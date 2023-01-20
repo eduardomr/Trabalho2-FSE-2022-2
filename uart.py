@@ -19,7 +19,7 @@ else:
 # MODBUS
 matricula = [9,2,3,1]
 estado_led_on = [0x01, 0x16, 0xD3, *matricula, 1]
-estado_led_on = [0x01, 0x16, 0xD3, *matricula, 0] 
+estado_led_off = [0x01, 0x16, 0xD3, *matricula, 0] 
 
 
 while True:
@@ -32,7 +32,7 @@ while True:
       uart0_filestream.write(mensagem_crc)
 
   if comando == '2':
-    msg = bytes(estado_led_on)
+    msg = bytes(estado_led_off)
     crc_calculado = crc.calcula_crc(msg,len(msg))
     mensagem_crc = msg+ crc_calculado.to_bytes(2, 'little')
     uart0_filestream.write(mensagem_crc)
