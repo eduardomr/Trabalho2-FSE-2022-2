@@ -14,3 +14,8 @@ class PID:
         derivada = erro - self.erro_anterior
         self.erro_anterior = erro
         print( self.kp * erro + self.ki * self.integral + self.kd * derivada )
+
+# TESTE
+
+pid = PID()
+pid.atualizar_pid(0, 45)
