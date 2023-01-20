@@ -19,17 +19,19 @@ else:
 # MODBUS
 endereco_rasp = 0x01
 comando=0
-comando = input("Selecione o comando")
 
 
-if comando == '1':
-    msg =  b'0x01' + b'0x16' + b'0xD3' + bytes([9, 2, 3, 1])+ b'1'
+while True:
+  comando = input("Selecione o comando")
+
+  if comando == '1':
+      msg =  b'0x01' + b'0x16' + b'0xD3' + bytes([9, 2, 3, 1])+ b'1'
+      crc_calculado = crc.calcula_crc(msg,len(msg))
+      mensagem_crc = msg+ crc_calculado.to_bytes(2, 'little')
+      uart0_filestream.write(mensagem_crc)
+
+  if comando == '2':
+    msg =  b'0x01' + b'0x16' + b'0xD3' + bytes([9, 2, 3, 1])+ b'0'
     crc_calculado = crc.calcula_crc(msg,len(msg))
     mensagem_crc = msg+ crc_calculado.to_bytes(2, 'little')
     uart0_filestream.write(mensagem_crc)
-
-if comando == '2':
-  msg =  b'0x01' + b'0x16' + b'0xD3' + bytes([9, 2, 3, 1])+ b'0'
-  crc_calculado = crc.calcula_crc(msg,len(msg))
-  mensagem_crc = msg+ crc_calculado.to_bytes(2, 'little')
-  uart0_filestream.write(mensagem_crc)
