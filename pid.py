@@ -13,7 +13,8 @@ class PID:
         self.integral += erro
         derivada = erro - self.erro_anterior
         self.erro_anterior = erro
-        print( self.kp * erro + self.ki * self.integral + self.kd * derivada )
+        saida = self.kp * erro + self.ki * self.integral + self.kd * derivada
+        print( max(min(saida, 100), -100)
 
 # TESTE
 
