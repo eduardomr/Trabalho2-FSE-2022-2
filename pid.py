@@ -9,7 +9,7 @@ class PID:
         self.integral = 0.0
 
     def atualizar_pid(self, erro, valor_atual):
-        erro = self.referencia - valor_atual
+        erro = valor_atual - self.referencia
         self.integral += erro
         derivada = erro - self.erro_anterior
         self.erro_anterior = erro
