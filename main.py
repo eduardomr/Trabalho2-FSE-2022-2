@@ -2,6 +2,7 @@ import uart
 import gpio
 import pid
 import time
+import struct
 
 pid_control = pid.PID()
 pid_control.configura_constantes(30.0, 0.2, 400.0)
@@ -62,10 +63,10 @@ while True:
         gpio.start_pwm()
         resposta = uart.envia_recebe(solicita_tmp_interna)
         temp_interna = resposta[1]
-        print("Temperatura interna: ", temp_interna)
+        print("Temperatura interna: ", (struct.unpack('<f', temp_interna)))
         resposta = uart.envia_recebe(solicita_tmp_referencia)
         temp_referencia = resposta[1]
-        print("Temperatura referencia: ", temp_referencia)
+        print("Temperatura referencia: ", (struct.unpack('<f',temp_referencia)))
         pid_control.atualiza_referencia(temp_referencia)
         valor_pwm = pid_control.controle(temp_interna)
         print(valor_pwm)
