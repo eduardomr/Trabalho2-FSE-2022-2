@@ -41,6 +41,7 @@ def controle_manual():
     valor_pwm = pid_control.controle(temp_interna)
     gpio.controle_pwm(valor_pwm)
     print(valor_pwm)
+    uart.envia_recebe(envia_sinal_controle , valor_pwm)
 
 while True:
     comando = uart.envia_recebe(le_cmd_usuario)
