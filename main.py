@@ -36,7 +36,8 @@ while True:
         print("Comando de desligar recebido")
         uart.envia_recebe(estado_forno_off)
         estado_forno[0]=0
-   """  if cod == 0xA3:
+    time.sleep(0.5)
+"""  if cod == 0xA3:
         print("Comando de Iniciar Aquecimento Recebido")
         uart.envia_recebe(estado_forno_on)
         estado_forno[1]=1
@@ -60,7 +61,5 @@ while True:
             cod, temp_ref = uart.envia_recebe(solicita_tmp_referencia)
             pid.atualiza_referencia(temp_ref)
             cod, temp_int = uart.envia_recebe(solicita_tmp_interna)
-            gpio.controle_pwm(pid_control.controle(temp_int))  """ 
-        
+            gpio.controle_pwm(pid_control.controle(temp_int))  """  
     
-    time.sleep(0.5)
