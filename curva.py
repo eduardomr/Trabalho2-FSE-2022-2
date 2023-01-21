@@ -21,7 +21,7 @@ def controle_curva():
 
         for row in csv_reader:
             temp_referencia = float(row[1])
-            uart.envia_recebe(envia_sinal_referencia + struct.pack('<f', temp_referencia))
+            uart.envia_recebe(envia_sinal_referencia , temp_referencia)
             resposta = uart.envia_recebe(solicita_tmp_interna)
             temp_interna = resposta
             print("Temperatura interna: ", temp_interna)
