@@ -3,9 +3,9 @@ import gpio
 import pid
 import time
 
-pid.__init__()
-pid.configura_constantes(30.0, 0.2, 400.0)
-pid.atualiza_referencia(0.0)
+pid_control = pid.PID()
+pid_control.configura_constantes(30.0, 0.2, 400.0)
+pid_control.atualiza_referencia(0.0)
 
 
 #DEFINIÇÃO DE COMANDOS----------------------
@@ -58,7 +58,7 @@ while True:
             cod, temp_ref = uart.envia_recebe(solicita_tmp_referencia)
             pid.atualiza_referencia(temp_ref)
             cod, temp_int = uart.envia_recebe(solicita_tmp_interna)
-            gpio.controle_pwm(pid.controle(temp_int))  
+            gpio.controle_pwm(pid_control.controle(temp_int))  
         else:
             #MODO CURVA
             continue
