@@ -40,7 +40,7 @@ def controle_manual():
     pid_control.atualiza_referencia(temp_referencia)
     valor_pwm = pid_control.controle(temp_interna)
     gpio.controle_pwm(valor_pwm)
-    return valor_pwm
+    print("Controle de Sinal: ", valor_pwm)
 
 while True:
     comando = uart.envia_recebe(le_cmd_usuario)
@@ -79,7 +79,7 @@ while True:
             modo = "manual"
             print("comando modo manual recebido")
     if estado_forno == [1,1] and modo == "manual":
-        uart.envia_recebe(envia_sinal_controle, controle_manual())
+       controle_manual()
 
 
     time.sleep(0.5)    
