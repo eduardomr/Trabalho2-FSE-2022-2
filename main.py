@@ -73,5 +73,3 @@ while True:
         uart.envia_recebe(envia_sinal_controle , valor_pwm)
         gpio.controle_pwm(valor_pwm)
         
- 
-    time.sleep(0.5)
