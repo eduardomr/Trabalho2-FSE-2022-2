@@ -27,35 +27,8 @@ estado_forno = [0,0]
 resposta=None
 
 while True:
-    cod, info = uart.recebe_resposta()
-    if cod == 0xA1:
-        print("Comando de ligar recebido")
-        resposta = uart.envia_recebe(estado_forno_on)
-        estado_forno[0]=1
-
-"""  if cod == 0xA3:
-        print("Comando de Iniciar Aquecimento Recebido")
+    resposta = uart.recebe_resposta()
+    if resposta[0]== 0xA1:
         uart.envia_recebe(estado_forno_on)
-        estado_forno[1]=1
-    if cod == 0xA4:
-        print("Comando de Parar Aquecimento Recebido")
-        uart.envia_recebe(estado_forno_off)
-        estado_forno[1]=0
-    if cod == 0xA5:
-        print("Comando Curva Recebido")
-        if modo == "manual":
-            modo = "curva"
-            uart.envia_recebe(modo_curva)
-        else:
-            modo = "manual"
-            uart.envia_recebe(modo_manual)
     
-    if estado_forno[0]==1 and estado_forno[1]==1:
-        gpio.start_pwm()
-        if modo == "manual":
-            #Ler temp ambiente tbm
-            cod, temp_ref = uart.envia_recebe(solicita_tmp_referencia)
-            pid.atualiza_referencia(temp_ref)
-            cod, temp_int = uart.envia_recebe(solicita_tmp_interna)
-            gpio.controle_pwm(pid_control.controle(temp_int))  """  
-    
+    time.sleep(0.5)
