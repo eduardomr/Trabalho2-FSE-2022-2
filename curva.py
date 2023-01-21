@@ -15,6 +15,8 @@ solicita_tmp_interna = [0x01, 0x23, 0xC1, *matricula]
 envia_sinal_referencia = [0x01, 0x16, 0xD2, *matricula] # + Float de valor
 gpio.start_pwm()
 
+global temp_referencia
+
 def change_params():
     while True:
         with open('curva_reflow.csv') as csvfile:
