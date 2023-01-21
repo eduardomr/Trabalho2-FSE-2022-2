@@ -80,6 +80,7 @@ while True:
             print("comando modo manual recebido")
     if estado_forno == [1,1] and modo == "manual":
        controle_manual()
+    print("loopou!")
 
 
     time.sleep(0.5)    
