@@ -46,13 +46,15 @@ while True:
         uart.envia_recebe(estado_funcionamento_off)
         estado_forno[1] = 0
         print("comando desaquecimento recebido")
-    if comando[1] == 0xA5 and modo == "manual":
-        uart.envia_recebe(modo_curva)
-        modo = "curva"
-        print("comando modo curva recebido")
-    if comando[1] == 0xA5 and modo == "curva":
-        uart.envia_recebe(modo_manual)
-        modo = "manual"
-        print("comando modo manual recebido")
+    if comando[1] == 0xA5:
+        if modo=="manual":
+            uart.envia_recebe(modo_curva)
+            modo = "curva"
+            print("comando modo curva recebido")
+        else:
+            uart.envia_recebe(modo_manual)
+            modo = "manual"
+            print("comando modo manual recebido")
+    
     
     time.sleep(0.5)
