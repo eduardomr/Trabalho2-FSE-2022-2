@@ -29,8 +29,30 @@ resposta=None
 while True:
     comando = uart.envia_recebe(le_cmd_usuario)
     if comando[1] == 0xA1:
-        print(comando)
         uart.envia_recebe(estado_forno_on)
-        print("RECEBEU!")
+        print("Comando ligar recebido")
+        estado_forno[0] = 1
+
+    if comando[1] == 0xA2:
+        uart.envia_recebe(estado_forno_off)
+        estado_forno[0] = 0
+        print("Comando desligar recebido")
+
+    if comando[1] == 0xA3:
+        uart.envia_recebe(estado_funcionamento_on)
+        estado_forno[1] = 1
+        print("comando aquecimento recebido")
+    if comando[1] == 0xA4:
+        uart.envia_recebe(estado_funcionamento_off)
+        estado_forno[1] = 0
+        print("comando desaquecimento recebido")
+    if comando[1] == 0xA5 and modo == "manual":
+        uart.envia_recebe(modo_curva)
+        modo = "curva"
+        print("comando modo curva recebido")
+    if comando[1] == 0xA5 and modo == "curva":
+        uart.envia_recebe(modo_manual)
+        modo = "manual"
+        print("comando modo manual recebido")
     
     time.sleep(0.5)
