@@ -24,19 +24,15 @@ estado_funcionamento_off = [0x01, 0x23, 0xD5, *matricula, 0]
 #-------------------------------------------
 modo="manual"
 estado_forno = [0,0]
-
+resposta=None
 
 while True:
     cod, info = uart.recebe_resposta()
     if cod == 0xA1:
         print("Comando de ligar recebido")
-        uart.envia_recebe(estado_forno_on)
+        resposta = uart.envia_recebe(estado_forno_on)
         estado_forno[0]=1
-    if cod == 0xA2:
-        print("Comando de desligar recebido")
-        uart.envia_recebe(estado_forno_off)
-        estado_forno[0]=0
-    time.sleep(0.5)
+
 """  if cod == 0xA3:
         print("Comando de Iniciar Aquecimento Recebido")
         uart.envia_recebe(estado_forno_on)
