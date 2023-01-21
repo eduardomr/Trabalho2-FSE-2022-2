@@ -30,6 +30,9 @@ def controle_curva():
             valor_pwm = pid_curva.controle(temp_interna)
             gpio.controle_pwm(valor_pwm)
             print("Controle de Sinal: ", valor_pwm)
+            time.sleep(25)
+            
+            
 
 
 controle_curva()
