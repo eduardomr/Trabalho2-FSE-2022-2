@@ -30,6 +30,18 @@ uart.envia_recebe(estado_forno_off)
 uart.envia_recebe(estado_funcionamento_off)
 uart.envia_recebe(modo_manual)
 
+def controle_manual():
+    resposta = uart.envia_recebe(solicita_tmp_interna)
+    temp_interna = resposta
+    print("Temperatura interna: ", temp_interna)
+    resposta = uart.envia_recebe(solicita_tmp_referencia)
+    temp_referencia = resposta
+    print("Temperatura referencia: ", temp_referencia)
+    pid_control.atualiza_referencia(temp_referencia)
+    valor_pwm = pid_control.controle(temp_interna)
+    gpio.controle_pwm(valor_pwm)
+    print(valor_pwm)
+
 while True:
     comando = uart.envia_recebe(le_cmd_usuario)
     if comando[1] == 0xA1:
@@ -67,17 +79,8 @@ while True:
             modo = "manual"
             print("comando modo manual recebido")
     if estado_forno == [1,1] and modo == "manual":
-        resposta = uart.envia_recebe(solicita_tmp_interna)
-        temp_interna = resposta
-        print("Temperatura interna: ", temp_interna)
-        resposta = uart.envia_recebe(solicita_tmp_referencia)
-        temp_referencia = resposta
-        print("Temperatura referencia: ", temp_referencia)
-        pid_control.atualiza_referencia(temp_referencia)
-        valor_pwm = pid_control.controle(temp_interna)
-        gpio.controle_pwm(valor_pwm)
-        print(valor_pwm)
-        time.sleep(0.5)
-        # uart.envia_recebe(envia_sinal_controle , valor_pwm)
+        controle_manual()
+    time.sleep(0.5)    
+    # uart.envia_recebe(envia_sinal_controle , valor_pwm)
     
         
