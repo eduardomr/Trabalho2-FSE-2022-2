@@ -12,7 +12,7 @@ pid_curva.atualiza_referencia(0.0)
 matricula = [9,2,3,1]
 solicita_tmp_interna = [0x01, 0x23, 0xC1, *matricula]
 envia_sinal_referencia = [0x01, 0x16, 0xD2, *matricula] # + Float de valor
-
+gpio.start_pwm()
 
 with open('curva_reflow.csv') as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=',')
@@ -31,3 +31,5 @@ with open('curva_reflow.csv') as csvfile:
         print("Controle de Sinal: ", valor_pwm)
         time.sleep(float(row[0]))
 
+gpio.controle_pwm(0.0)
+gpio.stop_pwm()
