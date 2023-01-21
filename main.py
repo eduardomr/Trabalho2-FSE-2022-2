@@ -58,7 +58,7 @@ while True:
             uart.envia_recebe(modo_manual)
             modo = "manual"
             print("comando modo manual recebido")
-    if estado_forno == [1,1]:
+    if estado_forno == [1,1] and modo == "manual":
         gpio.start_pwm()
         resposta = uart.envia_recebe(solicita_tmp_interna)
         temp_interna = resposta[1]
@@ -66,9 +66,9 @@ while True:
         resposta = uart.envia_recebe(solicita_tmp_referencia)
         temp_referencia = resposta[1]
         print("Temperatura referencia: ", temp_referencia)
-        if modo=="manual":
-            pid_control.atualiza_referencia(temp_referencia)
-            valor_pwm = gpio.controle_pwm(pid_control.controle(temp_interna))
-            resposta = uart.envia_recebe(envia_sinal_controle, valor_pwm)
+        pid_control.atualiza_referencia(temp_referencia)
+        valor_pwm = pid_control.atualiza_medida(temp_interna)
+        print(valor_pwm)
+        
  
     time.sleep(0.5)
