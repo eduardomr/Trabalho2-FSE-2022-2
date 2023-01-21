@@ -21,13 +21,13 @@ def stop_pwm():
     ventoinha_pwm.stop()
 
 def set_pwm(ventoinha, resistor):
-    if ventoinha < 35:
-        ventoinha = 35
+    if ventoinha < 35.0:
+        ventoinha = 35.0
     resistor_pwm.ChangeDutyCycle(resistor)
     ventoinha_pwm.ChangeDutyCycle(ventoinha)
 
 def controle_pwm(referencia):
-    if referencia > 0:
-        set_pwm(0, referencia)
+    if referencia > 0.0:
+        set_pwm(0.0, referencia)
     else:
-        set_pwm(-referencia, 0)
+        set_pwm(-referencia, 0.0)

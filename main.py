@@ -71,6 +71,6 @@ while True:
         pid_control.atualiza_referencia(temp_referencia)
         valor_pwm = pid_control.controle(temp_interna)
         uart.envia_recebe(envia_sinal_controle , int(valor_pwm))
-        print("Valor do pwm: ", valor_pwm)
+        print(valor_pwm)
         gpio.controle_pwm(valor_pwm)
         
