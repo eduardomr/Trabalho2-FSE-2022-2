@@ -51,7 +51,7 @@ def recebe_resposta():
     print("Erro de comunicação")
     return None
     
-  info = resposta[3:6]
+  info = resposta[3:7]
   cod = resposta[3]
 
   crc_calculado = crc.calcula_crc(resposta,len(resposta)-2)
