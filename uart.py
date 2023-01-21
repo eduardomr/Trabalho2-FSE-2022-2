@@ -51,8 +51,8 @@ def recebe_resposta():
     print("Erro de comunicação")
     return None
     
-  info = resposta[3:7]
-  cod = resposta[3]
+  info = resposta[2:7]
+  cod = resposta[2]
 
   crc_calculado = crc.calcula_crc(resposta,len(resposta)-2)
   crc_recebido = struct.unpack('<H',resposta[-2:])[0]
