@@ -32,10 +32,10 @@ uart.envia_recebe(modo_manual)
 
 def controle_manual():
     resposta = uart.envia_recebe(solicita_tmp_interna)
-    temp_interna = resposta
+    temp_interna = resposta[1]
     print("Temperatura interna: ", temp_interna)
     resposta = uart.envia_recebe(solicita_tmp_referencia)
-    temp_referencia = resposta
+    temp_referencia = resposta[1]
     print("Temperatura referencia: ", temp_referencia)
     pid_control.atualiza_referencia(temp_referencia)
     valor_pwm = pid_control.controle(temp_interna)
