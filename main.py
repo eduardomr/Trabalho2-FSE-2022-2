@@ -1,7 +1,7 @@
 import uart
 
 while True:
-    comando = uart.recebe_resposta()
-    if comando != None:
-        print(comando)
+    cod, info = uart.recebe_resposta()
+    if cod == 0xA1:
+        print("Comando de ligar recebido")
     
