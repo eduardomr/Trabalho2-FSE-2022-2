@@ -24,7 +24,6 @@ def change_params():
                 time.sleep(float(row[0]))
                 temp_referencia = float(row[1])
                 pid_curva.atualiza_referencia(temp_referencia)
-                uart.envia_recebe(envia_sinal_referencia , temp_referencia)
                 
 
 def controle_curva():
@@ -37,7 +36,6 @@ def controle_curva():
         thread.start()
         
         for row in csv_reader:
-            temp_referencia = float(row[1])
             resposta = uart.envia_recebe(solicita_tmp_interna)
             temp_interna = resposta
             print("Temperatura interna: ", temp_interna)
