@@ -26,7 +26,7 @@ def change_params():
                 time.sleep(float(row[0]))
                 temp_referencia = float(row[1])
                 print("Temperatura de Referência: ", temp_referencia)
-                uart.send_float(envia_sinal_referencia, temp_referencia)
+                uart.envia_recebe(envia_sinal_referencia, temp_referencia)
                 pid_curva.atualiza_referencia(temp_referencia)
                 
 
