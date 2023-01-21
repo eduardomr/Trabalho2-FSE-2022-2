@@ -59,8 +59,6 @@ def recebe_resposta():
   if crc_calculado == crc_recebido:
     if cod == 0xC1 or cod == 0xC2:
       return round(struct.unpack('<f', info)[0],2)
-    if cod == 0xD1 or cod == 0xD2:
-      return resposta
     return cod, struct.unpack('<i', info)[0]
   else:
     print("Erro de CRC")
