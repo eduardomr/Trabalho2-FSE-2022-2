@@ -27,8 +27,8 @@ estado_forno = [0,0]
 resposta=None
 
 while True:
-    comando = uart.envia_recebe()
-    if comando == 0xA1:
+    comando = uart.envia_recebe(le_cmd_usuario)
+    if comando[1] == 0xA1:
         print(comando)
         uart.envia_recebe(estado_forno_on)
         print("RECEBEU!")
