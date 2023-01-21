@@ -66,6 +66,7 @@ def recebe_resposta():
 
 def envia_recebe(comando,valor = None):
   envia_comando(comando,valor)
+  time.sleep(0.5)
   return recebe_resposta()
 
 # TESTE
