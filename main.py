@@ -30,5 +30,6 @@ while True:
     resposta = uart.recebe_resposta()
     if resposta[0]== 0xA1:
         uart.envia_recebe(estado_forno_on)
+        print("RECEBEU!")
     
     time.sleep(0.5)
