@@ -39,6 +39,9 @@ while True:
 
     if comando[1] == 0xA2:
         uart.envia_recebe(estado_forno_off)
+        if estado_forno == [1,1]:
+            gpio.controle_pwm(0.0)
+            gpio.stop_pwm()
         estado_forno[0] = 0
         print("Comando desligar recebido")
 
@@ -49,8 +52,10 @@ while True:
         print("comando aquecimento recebido")
     if comando[1] == 0xA4:
         uart.envia_recebe(estado_funcionamento_off)
+        if estado_forno == [1,1]:
+            gpio.controle_pwm(0.0)
+            gpio.stop_pwm()
         estado_forno[1] = 0
-        gpio.stop_pwm()
         print("comando desaquecimento recebido")
     if comando[1] == 0xA5:
         if modo=="manual":
