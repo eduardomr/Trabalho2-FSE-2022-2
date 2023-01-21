@@ -1,4 +1,4 @@
-import RPI.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 ventoinha_pin = 24
 resistor_pin = 23
