@@ -70,8 +70,8 @@ while True:
         print("Temperatura referencia: ", temp_referencia)
         pid_control.atualiza_referencia(temp_referencia)
         valor_pwm = pid_control.controle(temp_interna)
-        uart.envia_recebe(envia_sinal_controle , int(valor_pwm))
-        print(valor_pwm)
         gpio.controle_pwm(valor_pwm)
-        time.sleep(0.5)
+        print(valor_pwm)
+        uart.envia_recebe(envia_sinal_controle , int(valor_pwm))
+    
         
