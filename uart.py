@@ -71,7 +71,7 @@ def envia_recebe(comando,valor = None):
 
 # TESTE
 
-while True:
+""" while True:
   entry = input("Digite o comando: ")
   if entry == "1":
     envia_recebe(estado_forno_on)
@@ -97,3 +97,4 @@ while True:
     envia_recebe(estado_funcionamento_off)
   else:
     print("Comando inválido")
+ """
