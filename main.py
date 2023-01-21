@@ -45,10 +45,12 @@ while True:
     if comando[1] == 0xA3:
         uart.envia_recebe(estado_funcionamento_on)
         estado_forno[1] = 1
+        gpio.start_pwm()
         print("comando aquecimento recebido")
     if comando[1] == 0xA4:
         uart.envia_recebe(estado_funcionamento_off)
         estado_forno[1] = 0
+        gpio.stop_pwm()
         print("comando desaquecimento recebido")
     if comando[1] == 0xA5:
         if modo=="manual":
@@ -60,7 +62,6 @@ while True:
             modo = "manual"
             print("comando modo manual recebido")
     if estado_forno == [1,1] and modo == "manual":
-        gpio.start_pwm()
         resposta = uart.envia_recebe(solicita_tmp_interna)
         temp_interna = resposta
         print("Temperatura interna: ", temp_interna)
@@ -69,7 +70,7 @@ while True:
         print("Temperatura referencia: ", temp_referencia)
         pid_control.atualiza_referencia(temp_referencia)
         valor_pwm = pid_control.controle(temp_interna)
+        uart.envia_recebe(envia_sinal_controle , int(valor_pwm))
         print("Valor do pwm: ", valor_pwm)
-        uart.envia_recebe(envia_sinal_controle , valor_pwm)
         gpio.controle_pwm(valor_pwm)
         
