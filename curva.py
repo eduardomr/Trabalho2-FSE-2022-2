@@ -21,13 +21,11 @@ def change_params():
             csv_reader_thread = csv.reader(csvfile, delimiter=',')
             csv_reader_thread.__next__()
             for row in csv_reader_thread:
+                time.sleep(float(row[0]))
                 temp_referencia = float(row[1])
                 pid_curva.atualiza_referencia(temp_referencia)
                 uart.envia_recebe(envia_sinal_referencia , temp_referencia)
-                time.sleep(float(row[0]))
-
-thread = threading.Thread(target=change_params)
-thread.start()
+                
 
 def controle_curva():
     
@@ -37,6 +35,7 @@ def controle_curva():
 
         thread = threading.Thread(target=change_params)
         thread.start()
+        
         for row in csv_reader:
             temp_referencia = float(row[1])
             resposta = uart.envia_recebe(solicita_tmp_interna)
