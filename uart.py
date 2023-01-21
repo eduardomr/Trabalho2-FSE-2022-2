@@ -52,7 +52,7 @@ def recebe_resposta():
     return None
     
   info = resposta[3:7]
-  cod = resposta[3]
+  cod = resposta[2]
 
   crc_calculado = crc.calcula_crc(resposta,len(resposta)-2)
   crc_recebido = struct.unpack('<H',resposta[-2:])[0]
