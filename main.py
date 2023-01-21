@@ -62,11 +62,11 @@ while True:
     if estado_forno == [1,1] and modo == "manual":
         gpio.start_pwm()
         resposta = uart.envia_recebe(solicita_tmp_interna)
-        temp_interna = resposta[1]
-        print("Temperatura interna: ", (struct.unpack('<f', temp_interna)))
+        temp_interna = resposta
+        print("Temperatura interna: ", temp_interna)
         resposta = uart.envia_recebe(solicita_tmp_referencia)
-        temp_referencia = resposta[1]
-        print("Temperatura referencia: ", (struct.unpack('<f',temp_referencia)))
+        temp_referencia = resposta
+        print("Temperatura referencia: ", temp_referencia)
         pid_control.atualiza_referencia(temp_referencia)
         valor_pwm = pid_control.controle(temp_interna)
         print(valor_pwm)
