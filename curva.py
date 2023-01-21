@@ -34,3 +34,5 @@ def controle_curva():
 
     gpio.controle_pwm(0.0)
     gpio.stop_pwm()
+
+controle_curva()
