@@ -25,6 +25,9 @@ estado_funcionamento_off = [0x01, 0x23, 0xD5, *matricula, 0]
 modo="manual"
 estado_forno = [0,0]
 resposta=None
+uart.envia_recebe(estado_forno_on)
+uart.envia_recebe(estado_funcionamento_off)
+uart.envia_recebe(modo_manual)
 
 while True:
     comando = uart.envia_recebe(le_cmd_usuario)
