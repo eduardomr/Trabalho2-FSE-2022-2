@@ -96,7 +96,7 @@ while True:
 
         temp_referencia_curva = 25.0
         stop_thread = False
-        t = threading.Thread(target=curva.atualiza_referencia, args=(tempos, temperaturas,temp_referencia_curva))   
+        t = threading.Thread(target=curva.atualiza_referencia, args=(tempos, temperaturas,temp_referencia_curva, stop_thread))   
         t.start()
         curva.controle_curva(temp_referencia_curva)
     time.sleep(0.5)    
