@@ -40,7 +40,7 @@ def controle_curva():
     resposta = uart.envia_recebe(solicita_tmp_interna)
     temp_interna = resposta
     print("Temperatura interna: ", temp_interna)
-    resposta = uart.envia_recebe(solicita_tmp_referencia)
+    resposta = temp_referencia
     temp_referencia = resposta
     print("Temperatura referencia: ", temp_referencia)
     pid_curva.atualiza_referencia(temp_referencia)
