@@ -49,7 +49,7 @@ def controle_curva():
     print(i2c.temp_ambiente())
             
 
-Tempo (s), Temperatura
+""" Tempo (s), Temperatura
 0,   25
 60,  38
 120,  46
@@ -59,7 +59,7 @@ Tempo (s), Temperatura
 360, 63
 420, 54
 480, 33
-600, 25
+600, 25 """
 
 
 tempos = [0, 60, 120, 240, 260, 300, 360, 420, 480, 600]
