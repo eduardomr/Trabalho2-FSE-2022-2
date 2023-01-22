@@ -66,7 +66,7 @@ def controle_curva():
 def ativar_curva():
     global temp_referencia
     tempos = [0, 60, 120, 240, 260, 300, 360, 420, 480, 600]
-    temperaturas = [25, 38, 46, 54, 57, 61, 63, 54, 33, 25]
+    temperaturas = [25.0, 38.0, 46.0, 54.0, 57.0, 61.0, 63.0, 54.0, 33.0, 25.0]
 
     t = threading.Thread(target=atualiza_referencia, args=(tempos, temperaturas))
     temp_referencia = 25
