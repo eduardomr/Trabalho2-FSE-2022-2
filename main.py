@@ -98,6 +98,9 @@ while True:
         stop_thread = False
         t = threading.Thread(target=curva.atualiza_referencia, args=(tempos, temperaturas,temp_referencia_curva, stop_thread))   
         t.start()
+    
+
+    if stop_thread==False:
         curva.controle_curva(temp_referencia_curva)
     time.sleep(0.5)    
     
