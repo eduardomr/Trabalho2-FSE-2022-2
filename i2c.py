@@ -1,5 +1,4 @@
 import bme280
-import RPi_I2C_driver
 import smbus2
 from time import sleep
 
@@ -13,6 +12,9 @@ def temp_ambiente():
     bme280_data = bme280.sample(bus,address)
     ambient_temperature = bme280_data.temperature
     return ambient_temperature
+
+
+print(type(temp_ambiente()))
 
 
         
