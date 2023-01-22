@@ -4,6 +4,8 @@ import pid
 import time
 import struct
 import i2c
+import curva
+
 
 pid_control = pid.PID()
 pid_control.configura_constantes(30.0, 0.2, 400.0)
@@ -83,7 +85,9 @@ while True:
             print("comando modo manual recebido")
     if estado_forno == [1,1] and modo == "manual":
        controle_manual()
-    print("loopou!")
+    if estado_forno == [1,1] and modo == "curva":
+       curva.ativar_curva()
+
 
 
     time.sleep(0.5)    
