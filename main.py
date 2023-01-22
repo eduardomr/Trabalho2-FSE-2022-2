@@ -49,40 +49,41 @@ def controle_manual():
 
 while True:
     comando = uart.envia_recebe(le_cmd_usuario)
-    if comando[1] == 0xA1:
-        uart.envia_recebe(estado_forno_on)
-        print("Comando ligar recebido")
-        estado_forno[0] = 1
+    if (type(comando)!=float):
+        if comando[1] == 0xA1:
+            uart.envia_recebe(estado_forno_on)
+            print("Comando ligar recebido")
+            estado_forno[0] = 1
 
-    if comando[1] == 0xA2:
-        uart.envia_recebe(estado_forno_off)
-        if estado_forno == [1,1]:
-            gpio.controle_pwm(0.0)
-            gpio.stop_pwm()
-        estado_forno[0] = 0
-        print("Comando desligar recebido")
+        if comando[1] == 0xA2:
+            uart.envia_recebe(estado_forno_off)
+            if estado_forno == [1,1]:
+                gpio.controle_pwm(0.0)
+                gpio.stop_pwm()
+            estado_forno[0] = 0
+            print("Comando desligar recebido")
 
-    if comando[1] == 0xA3:
-        uart.envia_recebe(estado_funcionamento_on)
-        estado_forno[1] = 1
-        gpio.start_pwm()
-        print("comando aquecimento recebido")
-    if comando[1] == 0xA4:
-        uart.envia_recebe(estado_funcionamento_off)
-        if estado_forno == [1,1]:
-            gpio.controle_pwm(0.0)
-            gpio.stop_pwm()
-        estado_forno[1] = 0
-        print("comando desaquecimento recebido")
-    if comando[1] == 0xA5:
-        if modo=="manual":
-            uart.envia_recebe(modo_curva)
-            modo = "curva"
-            print("comando modo curva recebido")
-        else:
-            uart.envia_recebe(modo_manual)
-            modo = "manual"
-            print("comando modo manual recebido")
+        if comando[1] == 0xA3:
+            uart.envia_recebe(estado_funcionamento_on)
+            estado_forno[1] = 1
+            gpio.start_pwm()
+            print("comando aquecimento recebido")
+        if comando[1] == 0xA4:
+            uart.envia_recebe(estado_funcionamento_off)
+            if estado_forno == [1,1]:
+                gpio.controle_pwm(0.0)
+                gpio.stop_pwm()
+            estado_forno[1] = 0
+            print("comando desaquecimento recebido")
+        if comando[1] == 0xA5:
+            if modo=="manual":
+                uart.envia_recebe(modo_curva)
+                modo = "curva"
+                print("comando modo curva recebido")
+            else:
+                uart.envia_recebe(modo_manual)
+                modo = "manual"
+                print("comando modo manual recebido")
     if estado_forno == [1,1] and modo == "manual":
        controle_manual()
     if estado_forno == [1,1] and modo == "curva":
