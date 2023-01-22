@@ -24,17 +24,20 @@ estado_funcionamento_on = [0x01, 0x23, 0xD5, *matricula, 1]
 estado_funcionamento_off = [0x01, 0x23, 0xD5, *matricula, 0]
 gpio.start_pwm()
 
-
+global temp_referencia
 def atualiza_referencia(tempos, temperaturas):
+    global temp_referencia
     x=0
     for tempo in tempos:
         time.sleep(tempo)
-        uart.envia_recebe(envia_sinal_referencia, temperaturas[x])
+        temp_referencia = temperaturas[x]
         print("Referencia atualizada para: ", temperaturas[x])
         x = x+1
     uart.envia_recebe(envia_sinal_referencia, 24.0)
             
 def controle_curva():
+    global temp_referencia
+    uart.envia_recebe(envia_sinal_referencia, temp_referencia)
     resposta = uart.envia_recebe(solicita_tmp_interna)
     temp_interna = resposta
     print("Temperatura interna: ", temp_interna)
