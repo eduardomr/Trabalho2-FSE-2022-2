@@ -48,7 +48,7 @@ def controle_curva():
     gpio.controle_pwm(valor_pwm)
     print("Controle de Sinal: ", valor_pwm)
     uart.envia_comando(envia_sinal_controle, int(valor_pwm))
-    print(i2c.temp_ambiente())
+    print("Temperatura Ambiente: " (round(i2c.temp_ambiente(),2)))
             
 
 """ Tempo (s), Temperatura
