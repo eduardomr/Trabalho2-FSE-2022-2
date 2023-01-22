@@ -3,6 +3,7 @@ import gpio
 import pid
 import time
 import struct
+import i2c
 
 pid_control = pid.PID()
 pid_control.configura_constantes(30.0, 0.2, 400.0)
@@ -42,6 +43,7 @@ def controle_manual():
     gpio.controle_pwm(valor_pwm)
     print("Controle de Sinal: ", valor_pwm)
     uart.envia_comando(envia_sinal_controle, int(valor_pwm))
+    print(i2c.temp_ambiente())
 
 while True:
     comando = uart.envia_recebe(le_cmd_usuario)
