@@ -1,4 +1,3 @@
-import csv
 import time
 import pid
 import gpio
@@ -49,18 +48,6 @@ def controle_curva(temp_referencia):
     uart.envia_comando(envia_sinal_controle, int(valor_pwm))
     print(i2c.temp_ambiente())
             
-
-""" Tempo (s), Temperatura
-0,   25
-60,  38
-120,  46
-240, 54
-260, 57
-300, 61
-360, 63
-420, 54
-480, 33
-600, 25 """
 
 def ativar_curva(temp_referencia):
     tempos = [0, 60, 120, 240, 260, 300, 360, 420, 480, 600]
