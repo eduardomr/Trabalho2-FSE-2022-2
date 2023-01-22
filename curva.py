@@ -24,9 +24,11 @@ estado_funcionamento_off = [0x01, 0x23, 0xD5, *matricula, 0]
 gpio.start_pwm()
 
 global temp_referencia
-def atualiza_referencia(tempos, temperaturas,temp_referencia):
-    x=0
+def atualiza_referencia(tempos, temperaturas,temp_referencia, stop_thread):
+    
     for tempo in tempos:
+        if stop_thread == True:
+            break
         time.sleep(tempo)
         temp_referencia = temperaturas[x]
         print("Referencia atualizada para: ", temperaturas[x])

@@ -64,6 +64,7 @@ while True:
                 gpio.controle_pwm(0.0)
                 gpio.stop_pwm()
             estado_forno[0] = 0
+            stop_thread = True
             print("Comando desligar recebido")
 
         if comando[1] == 0xA3:
@@ -77,6 +78,7 @@ while True:
                 gpio.controle_pwm(0.0)
                 gpio.stop_pwm()
             estado_forno[1] = 0
+            stop_thread = True
             print("comando desaquecimento recebido")
         if comando[1] == 0xA5:
             if modo=="manual":
@@ -84,13 +86,16 @@ while True:
                 modo = "curva"
                 print("comando modo curva recebido")
             else:
+                stop_thread = True
                 uart.envia_recebe(modo_manual)
                 modo = "manual"
                 print("comando modo manual recebido")
     if estado_forno == [1,1] and modo == "manual":
        controle_manual()
     elif estado_forno == [1,1] and modo == "curva":
+
         temp_referencia_curva = 25.0
+        stop_thread = False
         t = threading.Thread(target=curva.atualiza_referencia, args=(tempos, temperaturas,temp_referencia_curva))   
         t.start()
         curva.controle_curva(temp_referencia_curva)
