@@ -33,8 +33,8 @@ def atualiza_referencia(tempos, temperaturas,temp_referencia):
         print("Referencia atualizada para: ", temperaturas[x])
         x = x+1
             
-def controle_curva():
-    global temp_referencia
+def controle_curva(temp_referencia):
+    temp_referencia
     uart.envia_recebe(envia_sinal_referencia, temp_referencia)
     resposta = uart.envia_recebe(solicita_tmp_interna)
     temp_interna = resposta
