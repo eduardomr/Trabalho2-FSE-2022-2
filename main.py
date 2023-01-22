@@ -90,8 +90,8 @@ while True:
     if estado_forno == [1,1] and modo == "manual":
        controle_manual()
     elif estado_forno == [1,1] and modo == "curva":
-        t = threading.Thread(target=curva.atualiza_referencia, args=(tempos, temperaturas,temp_referencia_curva))
         temp_referencia_curva = 25.0
+        t = threading.Thread(target=curva.atualiza_referencia, args=(tempos, temperaturas,temp_referencia_curva))   
         t.start()
         curva.controle_curva(temp_referencia_curva)
     time.sleep(0.5)    
