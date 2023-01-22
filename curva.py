@@ -68,7 +68,7 @@ tempos = [0, 60, 120, 240, 260, 300, 360, 420, 480, 600]
 temperaturas = [25, 38, 46, 54, 57, 61, 63, 54, 33, 25]
 
 t = threading.Thread(target=atualiza_referencia, args=(tempos, temperaturas))
-
+temp_referencia = 25
 t.start()
 while True:
     controle_curva()
