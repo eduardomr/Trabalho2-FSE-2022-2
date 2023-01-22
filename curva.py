@@ -25,8 +25,7 @@ estado_funcionamento_off = [0x01, 0x23, 0xD5, *matricula, 0]
 gpio.start_pwm()
 
 global temp_referencia
-def atualiza_referencia(tempos, temperaturas):
-    global temp_referencia
+def atualiza_referencia(tempos, temperaturas,temp_referencia):
     x=0
     for tempo in tempos:
         time.sleep(tempo)
@@ -63,8 +62,7 @@ def controle_curva():
 480, 33
 600, 25 """
 
-def ativar_curva():
-    global temp_referencia
+def ativar_curva(temp_referencia):
     tempos = [0, 60, 120, 240, 260, 300, 360, 420, 480, 600]
     temperaturas = [25.0, 38.0, 46.0, 54.0, 57.0, 61.0, 63.0, 54.0, 33.0, 25.0]
 
