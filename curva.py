@@ -25,14 +25,15 @@ gpio.start_pwm()
 
 global temp_referencia
 def atualiza_referencia(tempos, temperaturas,temp_referencia, stop_thread):
-    
+    x=0
     for tempo in tempos:
+        if stop_thread == True:
+            break
         time.sleep(tempo)
         temp_referencia = temperaturas[x]
         print("Referencia atualizada para: ", temperaturas[x])
         x = x+1
-        if stop_thread == True:
-            break
+        
             
 def controle_curva(temp_referencia):
     temp_referencia
