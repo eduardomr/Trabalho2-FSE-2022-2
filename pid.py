@@ -19,7 +19,7 @@ class PID:
         self.referencia = referencia
 
     def controle(self, saida_medida):
-        if type(saida_medida) == tuple:
+        if type(self.referencia) == tuple:
             return 0.0
         erro = self.referencia - saida_medida
         self.erro_total += erro
