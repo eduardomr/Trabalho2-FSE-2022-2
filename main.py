@@ -52,7 +52,7 @@ def controle_manual():
 
 while True:
     comando = uart.envia_recebe(le_cmd_usuario)
-    if (type(comando)!=float or comando!=None):
+    if (type(comando)!=float and comando!=None):
         if comando[1] == 0xA1:
             uart.envia_recebe(estado_forno_on)
             print("Comando ligar recebido")
