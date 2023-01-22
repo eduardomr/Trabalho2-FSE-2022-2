@@ -1,4 +1,4 @@
-# FSE_Trabalho_2
+# Trabalho2-FSE-2022-2
 
 Este repositório possui a implementação do [Trabalho 2](https://gitlab.com/fse_fga/trabalhos-2022_2/trabalho-2-2022-2) da disciplina de Fundamentos de Sistemas Embarcados (FGA-UnB).
 
