@@ -14,7 +14,7 @@ def temp_ambiente():
     return ambient_temperature
 
 
-print(type(temp_ambiente()))
+print("Temperatura ambiente: " (round(temp_ambiente(),2)))
 
 
         
