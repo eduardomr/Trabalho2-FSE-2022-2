@@ -32,6 +32,7 @@ global temp_referencia_curva
 modo="manual"
 estado_forno = [0,0]
 resposta=None
+stop_thread = True
 uart.envia_recebe(estado_forno_off)
 uart.envia_recebe(estado_funcionamento_off)
 uart.envia_recebe(modo_manual)
