@@ -29,7 +29,7 @@ Este repositório possui a implementação do [Trabalho 2](https://gitlab.com/fs
 * RPi.bme280 
     Para instalar:
     ```bash
-    pip3 install RPi.bme280`
+    pip3 install RPi.bme280
     ```
  
 
