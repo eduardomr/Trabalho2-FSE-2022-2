@@ -16,10 +16,11 @@ class PID:
         self.kd = kd
 
     def atualiza_referencia(self, referencia):
-        self.referencia = referencia
+        if type(referencia) == float:
+            self.referencia = referencia
 
     def controle(self, saida_medida):
-        if type(saida_medida) != float:
+        if type(saida_medida) != float :
             return 0.0
         erro = self.referencia - saida_medida
         self.erro_total += erro
