@@ -38,7 +38,7 @@ Este repositório possui a implementação do [Trabalho 2](https://gitlab.com/fs
 Para executar o código:
 
 ```bash
-python3 main.py
+python3 src/main.py
 ``` 
 
 ## PrintScreens
